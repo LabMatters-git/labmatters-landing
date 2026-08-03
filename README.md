@@ -12,35 +12,21 @@
 
 The selected design is served from the repository root:
 
-**https://saeedtaghavi.github.io/labmatters-landing/**
-
-## Previews
-
-All design candidates are kept under `/preview`, named `v<generation><variant>` so the decision path is visible: **gen 1** explored `community` vs `minimal` (community was chosen and evolved into **gen 2**, offered as `blue` vs `plum`).
-
-| Preview | What it is | Link |
-|---------|------------|------|
-| **v1community** | Gen 1 — full community landing, features, testimonials, sponsors *(chosen)* | https://saeedtaghavi.github.io/labmatters-landing/preview/v1community |
-| **v1minimal** | Gen 1 — minimal landing, the essentials only | https://saeedtaghavi.github.io/labmatters-landing/preview/v1minimal |
-| **v2blue** | Gen 2 — current design, navy/blue theme | https://saeedtaghavi.github.io/labmatters-landing/preview/v2blue |
-| **v2plum** | Gen 2 — current design, plum/soft-pink theme (brand colours) | https://saeedtaghavi.github.io/labmatters-landing/preview/v2plum |
-
-> Tip: add a trailing slash if a link 404s — e.g. `…/preview/v2blue/`.
+**https://welcome.labmatters.org**
 
 ## Repository structure
 
 ```
 labmatters-landing/
-├── index.html        # live site (the chosen design)
-├── assets/           # logos + illustrations for the live site
-├── preview/
-│   ├── v1community/  # gen 1 — full community landing (chosen)
-│   ├── v1minimal/    # gen 1 — minimal landing
-│   ├── v2blue/       # gen 2 — navy/blue theme
-│   └── v2plum/       # gen 2 — plum/soft-pink theme
+├── index.html              # live site
+├── landing-feedback.html   # standalone feedback page (not linked from the main page)
+├── CNAME                   # binds the custom domain welcome.labmatters.org, do not delete
+├── assets/                 # logos + illustrations
 └── README.md
 ```
 
-Each landing is self-contained: keep its `index.html` and `assets/` folder together, since pages reference images by relative path (`assets/…`).
+Pages reference images by relative path (`assets/…`), so keep the HTML files and `assets/` together.
 
+## Deployment
 
+Served by GitHub Pages from the root of `main`; every push redeploys automatically, usually in under a minute. The custom domain is bound by the `CNAME` file in this repo plus a DNS CNAME record (`welcome` -> `labmatters-git.github.io`) at the registrar. Note: the footer's social icons and Legal links are currently commented out in the HTML until their targets exist.
