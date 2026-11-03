@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" fill="none" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="t">
+  <title id="t">Sketch: linked protocol pages with a search lens</title>
+  <rect x="30" y="28" width="86" height="104" rx="8" fill="#FFFFFF" stroke="#0B1F3A" stroke-width="2"/>
+  <rect x="44" y="44" width="50" height="8" rx="4" fill="#0B1F3A"/>
+  <g fill="#E4E2DC"><rect x="44" y="64" width="58" height="5" rx="2.5"/><rect x="44" y="76" width="50" height="5" rx="2.5"/><rect x="44" y="88" width="56" height="5" rx="2.5"/><rect x="44" y="100" width="40" height="5" rx="2.5"/></g>
+  <rect x="134" y="18" width="76" height="52" rx="8" fill="#E3F1EC" stroke="#0F7B5F" stroke-width="2"/>
+  <g fill="#0F7B5F"><rect x="146" y="32" width="40" height="6" rx="3"/></g>
+  <g fill="#0F7B5F" opacity=".45"><rect x="146" y="46" width="50" height="5" rx="2.5"/></g>
+  <rect x="134" y="86" width="76" height="52" rx="8" fill="#FFFFFF" stroke="#0B1F3A" stroke-width="2"/>
+  <g fill="#E4E2DC"><rect x="146" y="100" width="44" height="6" rx="3"/><rect x="146" y="114" width="52" height="5" rx="2.5"/></g>
+  <path d="M116 60c10 0 8-16 18-16M116 92c10 0 8 20 18 20" stroke="#0F7B5F" stroke-width="2" stroke-dasharray="3 5"/>
+  <circle cx="98" cy="112" r="16" fill="#FAF9F6" stroke="#0F7B5F" stroke-width="3"/>
+  <path d="M110 124l12 12" stroke="#0F7B5F" stroke-width="4"/>
+</svg>

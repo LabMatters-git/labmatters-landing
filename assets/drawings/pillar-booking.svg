@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" fill="none" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="t">
+  <title id="t">Sketch: an instrument next to a booking calendar</title>
+  <!-- microscope -->
+  <path d="M46 126h56" stroke="#0B1F3A" stroke-width="2.5"/>
+  <path d="M60 126v-14h28v14" stroke="#0B1F3A" stroke-width="2"/>
+  <path d="M84 112c14-8 16-30 2-44" stroke="#0B1F3A" stroke-width="2.5"/>
+  <rect x="56" y="34" width="16" height="44" rx="4" transform="rotate(-24 64 56)" fill="#E3F1EC" stroke="#0F7B5F" stroke-width="2"/>
+  <path d="M50 96h34" stroke="#0B1F3A" stroke-width="2"/>
+  <!-- calendar -->
+  <rect x="122" y="26" width="96" height="104" rx="8" fill="#FFFFFF" stroke="#0B1F3A" stroke-width="2"/>
+  <path d="M122 48h96" stroke="#0B1F3A" stroke-width="2"/>
+  <path d="M142 20v12M198 20v12" stroke="#0B1F3A" stroke-width="2.5"/>
+  <g fill="#E4E2DC">
+    <rect x="132" y="58" width="16" height="12" rx="3"/><rect x="154" y="58" width="16" height="12" rx="3"/><rect x="176" y="58" width="16" height="12" rx="3"/><rect x="198" y="58" width="12" height="12" rx="3"/>
+    <rect x="132" y="78" width="16" height="12" rx="3"/><rect x="198" y="78" width="12" height="12" rx="3"/>
+    <rect x="132" y="98" width="16" height="12" rx="3"/><rect x="154" y="98" width="16" height="12" rx="3"/><rect x="176" y="98" width="16" height="12" rx="3"/><rect x="198" y="98" width="12" height="12" rx="3"/>
+  </g>
+  <rect x="154" y="78" width="38" height="12" rx="3" fill="#0F7B5F"/>
+</svg>
