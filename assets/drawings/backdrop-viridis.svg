@@ -25,12 +25,12 @@
     <rect x="970" y="411" width="110" height="44" rx="8"/><rect x="1094" y="411" width="110" height="44" rx="8"/><rect x="1218" y="411" width="110" height="44" rx="8"/>
   </g>
   <rect x="1094" y="353" width="234" height="44" rx="8" fill="#22A884"/>
-  <rect x="1342" y="411" width="110" height="44" rx="8" fill="#FDE725"/>
+  <rect x="1342" y="411" width="110" height="44" rx="8" fill="#5EC962"/>
   <!-- inventory bars -->
   <rect x="930" y="540" width="270" height="360" rx="22" fill="#20124A"/>
   <rect x="965" y="575" width="140" height="20" rx="10" fill="#E9EEF5" opacity=".6"/>
   <g fill="#2C1F5E"><rect x="965" y="625" width="200" height="16" rx="8"/><rect x="965" y="685" width="200" height="16" rx="8"/><rect x="965" y="745" width="200" height="16" rx="8"/><rect x="965" y="805" width="200" height="16" rx="8"/></g>
-  <rect x="965" y="625" width="160" height="16" rx="8" fill="#6DCD59"/><rect x="965" y="685" width="50" height="16" rx="8" fill="#B4DE2C"/>
+  <rect x="965" y="625" width="160" height="16" rx="8" fill="#6DCD59"/><rect x="965" y="685" width="50" height="16" rx="8" fill="#35B779"/>
   <rect x="965" y="745" width="120" height="16" rx="8" fill="#6DCD59"/><rect x="965" y="805" width="180" height="16" rx="8" fill="#6DCD59"/>
   <!-- training records -->
   <rect x="1230" y="540" width="260" height="360" rx="22" fill="#20124A"/>
@@ -41,6 +41,6 @@
   <!-- assistant bubble -->
   <rect x="370" y="700" width="520" height="200" rx="22" fill="#1F3F6E"/>
   <circle cx="420" cy="750" r="20" fill="#6DCD59"/>
-  <g fill="#B4DE2C" opacity=".7"><rect x="460" y="740" width="360" height="14" rx="7"/><rect x="420" y="790" width="420" height="14" rx="7"/><rect x="420" y="820" width="380" height="14" rx="7"/></g>
+  <g fill="#35B779" opacity=".7"><rect x="460" y="740" width="360" height="14" rx="7"/><rect x="420" y="790" width="420" height="14" rx="7"/><rect x="420" y="820" width="380" height="14" rx="7"/></g>
   <rect x="420" y="852" width="140" height="26" rx="13" fill="#22A884"/>
 </svg>

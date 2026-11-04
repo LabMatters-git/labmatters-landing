@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LabMatters: one system for your research lab</title>
   <meta name="description" content="One system for your research lab's knowledge and daily operations, built automatically from the SOPs and manuals you already have.">
-  <link rel="icon" href="assets/logo-round.png">
+  <link rel="icon" href="assets/logo-round-viridis.png">
   <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* Self-hosted Inter Tight (SIL OFL), see assets/fonts/LICENSE-InterTight.txt */
@@ -21,13 +21,15 @@
     }
 
     :root {
-      /* Viridis scale: #440154 #482878 #3E4A89 #31688E #26828E #1F9E89 #35B779 #6DCD59 #B4DE2C #FDE725
-         Status colour = progress on the scale: Ready = top (yellow), Nearly there = ~0.8, In progress = ~0.5 */
-      --v-0: #440154; --v-1: #482878; --v-2: #3E4A89; --v-3: #31688E; --v-5: #21918C;
-      --v-6: #35B779; --v-7: #6DCD59; --v-8: #B4DE2C; --v-9: #FDE725;
-      --mint: var(--v-9);         /* ready / highlight */
-      --amber: var(--v-7);        /* nearly there */
-      --sky: var(--v-5);          /* in progress */
+      /* Viridis scale: #440154 #482878 #3E4A89 #31688E #26828E #1F9E89 #35B779 #5EC962 #6DCD59 #B4DE2C #FDE725
+         Used from the green end down (no yellow): done = green, nearly there = teal, in progress = blue.
+         Text versions are lightened only where a label needs 4.5:1 contrast on the dark ground. */
+      --v-1: #482878; --v-3: #31688E; --v-4: #26828E; --v-5: #21918C;
+      --v-6: #35B779; --v-7: #6DCD59; --v-8: #5EC962;
+      --mint: var(--v-8);         /* ready */
+      --amber: var(--v-5);        /* nearly there */
+      --sky: var(--v-3);          /* in progress (ring) */
+      --sky-text: #7FA8C9;        /* in progress (label), same hue, lightened for contrast */
       --ground: #0D0618;
       --ink: #FFFFFF;
       --ink-2: #D2CBE0;
@@ -77,8 +79,7 @@
       margin: 0 auto; max-width: 23ch; color: var(--ink);
       font-size: clamp(1.9rem, 3.9vw, 3.15rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
     }
-    .kw { background: linear-gradient(90deg, var(--v-6), var(--v-9)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .kw-ops { background-image: linear-gradient(90deg, var(--v-5), var(--v-7)); }
+    .kw { background: linear-gradient(90deg, var(--v-5), var(--v-7)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .sub { margin: clamp(14px, 2vh, 20px) auto 0; max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--ink-2); }
 
     /* From old files to LabMatters */
@@ -95,7 +96,7 @@
     .flow-arrow { width: 72px; height: 16px; flex: none; }
     .lm { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; color: var(--ink); font-weight: 700; font-size: .95rem;
       background: rgba(255, 255, 255, .06);
-      box-shadow: inset 0 0 0 1.5px rgba(181, 222, 44, .55); }
+      box-shadow: inset 0 0 0 1.5px rgba(109, 205, 89, .55); }
     .lm img { width: 28px; height: 28px; border-radius: 50%; }
 
     /* Status row */
@@ -113,18 +114,20 @@
     .ready  { color: var(--mint); }
     .nearly { color: var(--amber); }
     .wip    { color: var(--sky); }
+    .state.wip { color: var(--sky-text); }
 
     /* Get in touch */
     .cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       width: min(100%, 560px); margin: clamp(26px, 4.5vh, 44px) auto 0; padding: 20px 28px; border-radius: 14px;
-      background: linear-gradient(90deg, var(--v-1), var(--v-3) 55%, var(--v-5)); background-size: 160% 100%; background-position: 0 0;
-      color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
-      transition: background-position .35s, transform .2s; box-shadow: 0 16px 40px -16px rgba(49, 104, 142, .9);
+      background: var(--v-4); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
+      transition: background .2s, transform .2s; box-shadow: 0 16px 40px -16px rgba(38, 130, 142, .8);
     }
-    .cta:hover { background-position: 100% 0; transform: translateY(-1px); }
-    .cta:focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
+    .cta:hover { background: #2A8F99; transform: translateY(-1px); }
+    .cta:focus-visible { outline: 3px solid var(--v-7); outline-offset: 4px; }
     .cta .icon { width: 22px; height: 22px; }
+    .addr { margin-top: 12px; font-size: .9rem; color: var(--ink-3); }
+    .addr a { color: var(--ink-2); text-underline-offset: 3px; }
     
     /* Coming soon: clock just before the marked tag */
     .soon { display: flex; align-items: center; gap: 14px; color: var(--ink-3); font-size: .95rem; }
@@ -157,6 +160,7 @@
       .ring .icon { width: 21px; height: 21px; }
       .cta { margin-top: 22px; padding-block: 16px; }
       .flow { margin-top: 10px; }
+      .addr { margin-top: 8px; }
       .soon svg { width: 54px; height: 54px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -181,18 +185,18 @@
 
 <div class="page">
   <header>
-    <img src="assets/logo-wordmark-light.png" alt="LabMatters" width="900" height="124">
+    <img src="assets/logo-wordmark-viridis.png" alt="LabMatters" width="900" height="124">
   </header>
 
   <main>
     <section class="panel" aria-labelledby="title">
-      <h1 id="title">One system for your research lab's <span class="kw">knowledge</span> and daily <span class="kw kw-ops">operations</span>.</h1>
+      <h1 id="title">One system for your research lab's <span class="kw">knowledge</span> and daily <span class="kw">operations</span>.</h1>
       <p class="sub">Built automatically from the documents you already have.</p>
       <div class="flow" role="img" aria-label="Your PDF, Word and Excel files, moved into LabMatters">
         <span class="file">PDF</span><span class="file">DOC</span><span class="file">XLS</span>
-        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#3E4A89"/><stop offset=".6" stop-color="#21918C"/><stop offset="1" stop-color="#B4DE2C"/></linearGradient></defs>
-          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#B4DE2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="lm"><img src="assets/logo-round.png" alt="" width="240" height="240">LabMatters</span>
+        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#31688E"/><stop offset=".55" stop-color="#21918C"/><stop offset="1" stop-color="#6DCD59"/></linearGradient></defs>
+          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#6DCD59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lm"><img src="assets/logo-round-viridis.png" alt="" width="240" height="240">LabMatters</span>
       </div>
 
       <ul class="status" aria-label="Platform status">
@@ -231,6 +235,7 @@
 
       <a class="cta" href="mailto:info@labmatters.org?subject=Getting%20in%20touch%20about%20LabMatters&amp;body=%23%23%20About%20my%20lab%0D%0A%0D%0A%0D%0A%23%23%20What%20I%20need%0D%0A%0D%0A">
         <svg class="icon"><use href="#i-mail"/></svg>Get in touch</a>
+      <p class="addr">or write to <a href="mailto:info@labmatters.org">info@labmatters.org</a></p>
     </section>
 
     <!-- Coming soon: the hands sit just before the green tag at twelve -->
@@ -244,8 +249,8 @@
           <path d="M60 22v-6" transform="rotate(300 60 60)"/><path d="M60 22v-6" transform="rotate(330 60 60)"/>
         </g>
         <!-- the marked tag -->
-        <path d="M60 24V8" stroke="#FDE725" stroke-width="4" stroke-linecap="round"/>
-        <path d="M60 4h14l-4 5 4 5H60z" fill="#FDE725"/>
+        <path d="M60 24V8" stroke="#5EC962" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 4h14l-4 5 4 5H60z" fill="#5EC962"/>
         <!-- hands at 11:55 -->
         <path d="M60 60V36" stroke="#fff" stroke-width="5" stroke-linecap="round" transform="rotate(357.5 60 60)"/>
         <path d="M60 60V24" stroke="#fff" stroke-width="3.5" stroke-linecap="round" transform="rotate(330 60 60)"/>
