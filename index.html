@@ -23,8 +23,8 @@
     :root {
       /* Viridis, read as a progress colour bar:
            yellow #FDE725 = just started  ->  green #86D549 = nearly there  ->  teal #20918D = done.
-         The purple end (#471060) marks everything that is not a status: the old way of working
-         (PDF/DOC/XLS files) and the action button. */
+         The purple end (#471060) marks the old way of working (PDF/DOC/XLS files).
+         The Get in touch button is a teal-green gradient (white text stays above 3:1 for large bold type). */
       --v-purple: #471060; --v-purple-2: #5C1E7C; --v-indigo: #3B528B;
       --v-teal: #20918D; --v-green: #86D549; --v-yellow: #FDE725;
       --viridis: linear-gradient(90deg, #471060, #3B528B, #20918D, #35B779, #86D549, #FDE725);
@@ -126,8 +126,8 @@
     .cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       width: min(100%, 560px); margin: clamp(26px, 4.5vh, 44px) auto 0; padding: 20px 28px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--v-purple-2), var(--v-purple)); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
-      transition: filter .2s, transform .2s; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 16px 40px -14px rgba(120, 40, 170, .75);
+      background: linear-gradient(135deg, #1F8A87, #279A79); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
+      transition: filter .2s, transform .2s; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 16px 40px -14px rgba(32, 145, 141, .75);
     }
     .cta:hover { filter: brightness(1.18); transform: translateY(-1px); }
     .cta:focus-visible { outline: 3px solid var(--v-yellow); outline-offset: 4px; }
