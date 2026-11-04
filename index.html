@@ -21,15 +21,17 @@
     }
 
     :root {
-      --accent: #0F7B5F;          /* button */
-      --accent-hover: #12916F;
-      --mint: #6FD3B0;            /* accent on dark */
-      --amber: #F2C26B;           /* "nearly there" */
-      --sky: #9DB8DC;             /* "in progress" */
-      --ground: #071326;
+      /* Viridis scale: #440154 #482878 #3E4A89 #31688E #26828E #1F9E89 #35B779 #6DCD59 #B4DE2C #FDE725
+         Status colour = progress on the scale: Ready = top (yellow), Nearly there = ~0.8, In progress = ~0.5 */
+      --v-0: #440154; --v-1: #482878; --v-2: #3E4A89; --v-3: #31688E; --v-5: #21918C;
+      --v-6: #35B779; --v-7: #6DCD59; --v-8: #B4DE2C; --v-9: #FDE725;
+      --mint: var(--v-9);         /* ready / highlight */
+      --amber: var(--v-7);        /* nearly there */
+      --sky: var(--v-5);          /* in progress */
+      --ground: #0D0618;
       --ink: #FFFFFF;
-      --ink-2: #C3CFDF;
-      --ink-3: #8A9BB3;
+      --ink-2: #D2CBE0;
+      --ink-3: #9B91B0;
       --font: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
@@ -50,8 +52,8 @@
     .backdrop::after {
       content: ""; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(7, 19, 38, .2) 0%, rgba(7, 19, 38, .55) 60%, rgba(7, 19, 38, .9) 100%),
-        linear-gradient(to bottom, rgba(7, 19, 38, .75) 0%, rgba(7, 19, 38, 0) 20%, rgba(7, 19, 38, 0) 72%, rgba(7, 19, 38, .9) 100%);
+        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(13, 6, 24, .2) 0%, rgba(13, 6, 24, .55) 60%, rgba(13, 6, 24, .9) 100%),
+        linear-gradient(to bottom, rgba(13, 6, 24, .75) 0%, rgba(13, 6, 24, 0) 20%, rgba(13, 6, 24, 0) 72%, rgba(13, 6, 24, .9) 100%);
     }
 
     /* One-screen layout */
@@ -67,7 +69,7 @@
     .panel {
       width: min(100%, 940px); text-align: center;
       padding: clamp(28px, 5vh, 52px) clamp(20px, 5vw, 64px);
-      background: rgba(8, 22, 43, .62); border: 1px solid rgba(255, 255, 255, .1); border-radius: 24px;
+      background: rgba(20, 10, 40, .62); border: 1px solid rgba(255, 255, 255, .1); border-radius: 24px;
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7);
     }
@@ -75,7 +77,26 @@
       margin: 0 auto; max-width: 23ch; color: var(--ink);
       font-size: clamp(1.9rem, 3.9vw, 3.15rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
     }
+    .kw { background: linear-gradient(90deg, var(--v-6), var(--v-9)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .kw-ops { background-image: linear-gradient(90deg, var(--v-5), var(--v-7)); }
     .sub { margin: clamp(14px, 2vh, 20px) auto 0; max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--ink-2); }
+
+    /* From old files to LabMatters */
+    .flow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+    .file {
+      position: relative; width: 34px; height: 42px; border-radius: 4px 10px 4px 4px; display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 5px; font-size: .62rem; font-weight: 800; letter-spacing: .04em; color: var(--ink-2);
+      border: 1.5px solid rgba(255, 255, 255, .3); background: rgba(255, 255, 255, .04);
+    }
+    .file::before { content: ""; position: absolute; top: 8px; left: 7px; right: 9px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .22); box-shadow: 0 6px 0 rgba(255, 255, 255, .22), 0 12px 0 rgba(255, 255, 255, .22); }
+    .file:nth-child(1) { transform: rotate(-6deg); }
+    .file:nth-child(2) { transform: rotate(3deg); }
+    .file:nth-child(3) { transform: rotate(-2deg); }
+    .flow-arrow { width: 72px; height: 16px; flex: none; }
+    .lm { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; color: var(--ink); font-weight: 700; font-size: .95rem;
+      background: rgba(255, 255, 255, .06);
+      box-shadow: inset 0 0 0 1.5px rgba(181, 222, 44, .55); }
+    .lm img { width: 28px; height: 28px; border-radius: 50%; }
 
     /* Status row */
     .status { list-style: none; padding: 0; margin: clamp(26px, 4.5vh, 44px) auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 680px; }
@@ -87,7 +108,7 @@
     .ring .fg { stroke: currentColor; stroke-linecap: round; stroke-dasharray: 182.2; }  /* 2πr, r = 29 */
     .ring .tick { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint); color: var(--ground); display: grid; place-items: center; }
     .ring .tick .icon { width: 14px; height: 14px; stroke-width: 3; }
-    .status .name { color: var(--ink); font-weight: 650; font-size: .98rem; line-height: 1.2; }
+    .status .name { color: var(--ink); font-weight: 650; font-size: .95rem; line-height: 1.2; text-align: center; max-width: 13ch; min-height: 2.4em; display: flex; align-items: center; }
     .status .state { font-size: .8rem; font-weight: 600; letter-spacing: .02em; }
     .ready  { color: var(--mint); }
     .nearly { color: var(--amber); }
@@ -97,15 +118,14 @@
     .cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       width: min(100%, 560px); margin: clamp(26px, 4.5vh, 44px) auto 0; padding: 20px 28px; border-radius: 14px;
-      background: var(--accent); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
-      transition: background .2s, transform .2s; box-shadow: 0 16px 40px -16px rgba(15, 123, 95, .8);
+      background: linear-gradient(90deg, var(--v-1), var(--v-3) 55%, var(--v-5)); background-size: 160% 100%; background-position: 0 0;
+      color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
+      transition: background-position .35s, transform .2s; box-shadow: 0 16px 40px -16px rgba(49, 104, 142, .9);
     }
-    .cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .cta:hover { background-position: 100% 0; transform: translateY(-1px); }
     .cta:focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
     .cta .icon { width: 22px; height: 22px; }
-    .addr { margin-top: 12px; font-size: .92rem; color: var(--ink-3); }
-    .addr a { color: var(--ink-2); text-underline-offset: 3px; }
-
+    
     /* Coming soon: clock just before the marked tag */
     .soon { display: flex; align-items: center; gap: 14px; color: var(--ink-3); font-size: .95rem; }
     .soon svg { width: 68px; height: 68px; flex: none; }
@@ -118,6 +138,12 @@
     @media (max-width: 640px) {
       .status { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
       .panel { border-radius: 20px; }
+      .flow { gap: 6px; }
+      .file { width: 28px; height: 35px; font-size: .55rem; }
+      .file::before { top: 6px; left: 6px; right: 8px; box-shadow: 0 5px 0 rgba(255, 255, 255, .22), 0 10px 0 rgba(255, 255, 255, .22); }
+      .flow-arrow { width: 40px; }
+      .lm { font-size: .88rem; padding-right: 12px; }
+      .lm img { width: 24px; height: 24px; }
     }
     /* Short screens (e.g. 1280×720 laptops): tighten so it still fits in one view */
     @media (min-width: 641px) and (max-height: 800px) {
@@ -130,7 +156,7 @@
       .ring { width: 54px; height: 54px; }
       .ring .icon { width: 21px; height: 21px; }
       .cta { margin-top: 22px; padding-block: 16px; }
-      .addr { margin-top: 8px; }
+      .flow { margin-top: 10px; }
       .soon svg { width: 54px; height: 54px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -150,8 +176,8 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></symbol>
 </svg>
 
-<!-- Concept background: swap assets/drawings/backdrop.svg for a real screenshot; the CSS blurs it -->
-<div class="backdrop" aria-hidden="true"><img src="assets/drawings/backdrop.svg" alt=""></div>
+<!-- Concept background: swap assets/drawings/backdrop-viridis.svg for a real screenshot; the CSS blurs it -->
+<div class="backdrop" aria-hidden="true"><img src="assets/drawings/backdrop-viridis.svg" alt=""></div>
 
 <div class="page">
   <header>
@@ -160,8 +186,14 @@
 
   <main>
     <section class="panel" aria-labelledby="title">
-      <h1 id="title">One system for your research lab's knowledge and daily operations.</h1>
-      <p class="sub">Built automatically from the documents you already have: SOPs, manuals and protocols.</p>
+      <h1 id="title">One system for your research lab's <span class="kw">knowledge</span> and daily <span class="kw kw-ops">operations</span>.</h1>
+      <p class="sub">Built automatically from the documents you already have.</p>
+      <div class="flow" role="img" aria-label="Your PDF, Word and Excel files, moved into LabMatters">
+        <span class="file">PDF</span><span class="file">DOC</span><span class="file">XLS</span>
+        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#3E4A89"/><stop offset=".6" stop-color="#21918C"/><stop offset="1" stop-color="#B4DE2C"/></linearGradient></defs>
+          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#B4DE2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lm"><img src="assets/logo-round.png" alt="" width="240" height="240">LabMatters</span>
+      </div>
 
       <ul class="status" aria-label="Platform status">
         <li>
@@ -170,7 +202,7 @@
             <svg class="icon"><use href="#i-book"/></svg>
             <span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>
           </div>
-          <span class="name">Knowledge</span><span class="state ready">Ready</span>
+          <span class="name">Interactive Knowledge Base</span><span class="state ready">Ready</span>
         </li>
         <li>
           <div class="ring nearly">
@@ -178,14 +210,14 @@
             <svg class="track" viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="29"/><circle class="fg" cx="32" cy="32" r="29" style="stroke-dashoffset:36.4"/></svg>
             <svg class="icon"><use href="#i-microscope"/></svg>
           </div>
-          <span class="name">Equipment</span><span class="state nearly">Nearly there</span>
+          <span class="name">Equipment Management</span><span class="state nearly">Nearly there</span>
         </li>
         <li>
           <div class="ring nearly">
             <svg class="track" viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="29"/><circle class="fg" cx="32" cy="32" r="29" style="stroke-dashoffset:36.4"/></svg>
             <svg class="icon"><use href="#i-box"/></svg>
           </div>
-          <span class="name">Inventory</span><span class="state nearly">Nearly there</span>
+          <span class="name">Inventory Management</span><span class="state nearly">Nearly there</span>
         </li>
         <li>
           <div class="ring wip">
@@ -193,13 +225,12 @@
             <svg class="track" viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="29"/><circle class="fg" cx="32" cy="32" r="29" style="stroke-dashoffset:109.3"/></svg>
             <svg class="icon"><use href="#i-cap"/></svg>
           </div>
-          <span class="name">Training records</span><span class="state wip">In progress</span>
+          <span class="name">Training Records</span><span class="state wip">In progress</span>
         </li>
       </ul>
 
       <a class="cta" href="mailto:info@labmatters.org?subject=Getting%20in%20touch%20about%20LabMatters&amp;body=%23%23%20About%20my%20lab%0D%0A%0D%0A%0D%0A%23%23%20What%20I%20need%0D%0A%0D%0A">
         <svg class="icon"><use href="#i-mail"/></svg>Get in touch</a>
-      <p class="addr">or write to <a href="mailto:info@labmatters.org">info@labmatters.org</a></p>
     </section>
 
     <!-- Coming soon: the hands sit just before the green tag at twelve -->
@@ -213,12 +244,12 @@
           <path d="M60 22v-6" transform="rotate(300 60 60)"/><path d="M60 22v-6" transform="rotate(330 60 60)"/>
         </g>
         <!-- the marked tag -->
-        <path d="M60 24V8" stroke="#6FD3B0" stroke-width="4" stroke-linecap="round"/>
-        <path d="M60 4h14l-4 5 4 5H60z" fill="#6FD3B0"/>
+        <path d="M60 24V8" stroke="#FDE725" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 4h14l-4 5 4 5H60z" fill="#FDE725"/>
         <!-- hands at 11:55 -->
         <path d="M60 60V36" stroke="#fff" stroke-width="5" stroke-linecap="round" transform="rotate(357.5 60 60)"/>
         <path d="M60 60V24" stroke="#fff" stroke-width="3.5" stroke-linecap="round" transform="rotate(330 60 60)"/>
-        <path class="second" d="M60 68V26" stroke="#6FD3B0" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="second" d="M60 68V26" stroke="#35B779" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="60" cy="60" r="4" fill="#fff"/>
       </svg>
       <p><strong>More to reveal soon.</strong>The full platform is almost here.</p>
