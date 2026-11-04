@@ -21,15 +21,17 @@
     }
 
     :root {
-      /* Viridis scale: #440154 #482878 #3E4A89 #31688E #26828E #1F9E89 #35B779 #5EC962 #6DCD59 #B4DE2C #FDE725
-         Used from the green end down (no yellow): done = green, nearly there = teal, in progress = blue.
-         Text versions are lightened only where a label needs 4.5:1 contrast on the dark ground. */
-      --v-1: #482878; --v-3: #31688E; --v-4: #26828E; --v-5: #21918C;
-      --v-6: #35B779; --v-7: #6DCD59; --v-8: #5EC962;
-      --mint: var(--v-8);         /* ready */
-      --amber: var(--v-5);        /* nearly there */
-      --sky: var(--v-3);          /* in progress (ring) */
-      --sky-text: #7FA8C9;        /* in progress (label), same hue, lightened for contrast */
+      /* Viridis, read as a progress colour bar:
+           yellow #FDE725 = just started  ->  green #86D549 = nearly there  ->  teal #20918D = done.
+         The purple end (#471060) marks everything that is not a status: the old way of working
+         (PDF/DOC/XLS files) and the action button. */
+      --v-purple: #471060; --v-purple-2: #5C1E7C; --v-indigo: #3B528B;
+      --v-teal: #20918D; --v-green: #86D549; --v-yellow: #FDE725;
+      --viridis: linear-gradient(90deg, #471060, #3B528B, #20918D, #35B779, #86D549, #FDE725);
+      --mint: var(--v-teal);      /* ready */
+      --amber: var(--v-green);    /* nearly there */
+      --sky: var(--v-yellow);     /* in progress */
+      --sky-text: var(--v-yellow);
       --ground: #0D0618;
       --ink: #FFFFFF;
       --ink-2: #D2CBE0;
@@ -74,12 +76,16 @@
       background: rgba(20, 10, 40, .62); border: 1px solid rgba(255, 255, 255, .1); border-radius: 24px;
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7);
+      position: relative; overflow: hidden;
     }
+    /* Viridis colour bar along the top of the panel, like a plot legend */
+    .panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--viridis); }
     h1 {
       margin: 0 auto; max-width: 23ch; color: var(--ink);
       font-size: clamp(1.9rem, 3.9vw, 3.15rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
     }
-    .kw { background: linear-gradient(90deg, var(--v-5), var(--v-7)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .kw { background: linear-gradient(90deg, #20918D, #2FB37E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .kw-ops { background-image: linear-gradient(90deg, var(--v-green), var(--v-yellow)); }
     .sub { margin: clamp(14px, 2vh, 20px) auto 0; max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--ink-2); }
 
     /* From old files to LabMatters */
@@ -87,7 +93,7 @@
     .file {
       position: relative; width: 34px; height: 42px; border-radius: 4px 10px 4px 4px; display: flex; align-items: flex-end; justify-content: center;
       padding-bottom: 5px; font-size: .62rem; font-weight: 800; letter-spacing: .04em; color: var(--ink-2);
-      border: 1.5px solid rgba(255, 255, 255, .3); background: rgba(255, 255, 255, .04);
+      border: 1.5px solid #8A4FAE; background: rgba(71, 16, 96, .55); color: #E2CFF0;
     }
     .file::before { content: ""; position: absolute; top: 8px; left: 7px; right: 9px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .22); box-shadow: 0 6px 0 rgba(255, 255, 255, .22), 0 12px 0 rgba(255, 255, 255, .22); }
     .file:nth-child(1) { transform: rotate(-6deg); }
@@ -96,7 +102,7 @@
     .flow-arrow { width: 72px; height: 16px; flex: none; }
     .lm { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; color: var(--ink); font-weight: 700; font-size: .95rem;
       background: rgba(255, 255, 255, .06);
-      box-shadow: inset 0 0 0 1.5px rgba(109, 205, 89, .55); }
+      box-shadow: inset 0 0 0 1.5px var(--v-teal); }
     .lm img { width: 28px; height: 28px; border-radius: 50%; }
 
     /* Status row */
@@ -107,7 +113,7 @@
     .ring circle { fill: none; stroke-width: 3.5; }
     .ring .bg { stroke: rgba(255, 255, 255, .12); }
     .ring .fg { stroke: currentColor; stroke-linecap: round; stroke-dasharray: 182.2; }  /* 2πr, r = 29 */
-    .ring .tick { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint); color: var(--ground); display: grid; place-items: center; }
+    .ring .tick { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint); color: #fff; display: grid; place-items: center; }
     .ring .tick .icon { width: 14px; height: 14px; stroke-width: 3; }
     .status .name { color: var(--ink); font-weight: 650; font-size: .95rem; line-height: 1.2; text-align: center; max-width: 13ch; min-height: 2.4em; display: flex; align-items: center; }
     .status .state { font-size: .8rem; font-weight: 600; letter-spacing: .02em; }
@@ -120,11 +126,11 @@
     .cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       width: min(100%, 560px); margin: clamp(26px, 4.5vh, 44px) auto 0; padding: 20px 28px; border-radius: 14px;
-      background: var(--v-4); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
-      transition: background .2s, transform .2s; box-shadow: 0 16px 40px -16px rgba(38, 130, 142, .8);
+      background: linear-gradient(135deg, var(--v-purple-2), var(--v-purple)); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
+      transition: filter .2s, transform .2s; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 16px 40px -14px rgba(120, 40, 170, .75);
     }
-    .cta:hover { background: #2A8F99; transform: translateY(-1px); }
-    .cta:focus-visible { outline: 3px solid var(--v-7); outline-offset: 4px; }
+    .cta:hover { filter: brightness(1.18); transform: translateY(-1px); }
+    .cta:focus-visible { outline: 3px solid var(--v-yellow); outline-offset: 4px; }
     .cta .icon { width: 22px; height: 22px; }
     .addr { margin-top: 12px; font-size: .9rem; color: var(--ink-3); }
     .addr a { color: var(--ink-2); text-underline-offset: 3px; }
@@ -190,12 +196,12 @@
 
   <main>
     <section class="panel" aria-labelledby="title">
-      <h1 id="title">One system for your research lab's <span class="kw">knowledge</span> and daily <span class="kw">operations</span>.</h1>
+      <h1 id="title">One system for your research lab's <span class="kw">knowledge</span> and daily <span class="kw kw-ops">operations</span>.</h1>
       <p class="sub">Built automatically from the documents you already have.</p>
       <div class="flow" role="img" aria-label="Your PDF, Word and Excel files, moved into LabMatters">
         <span class="file">PDF</span><span class="file">DOC</span><span class="file">XLS</span>
-        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#31688E"/><stop offset=".55" stop-color="#21918C"/><stop offset="1" stop-color="#6DCD59"/></linearGradient></defs>
-          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#6DCD59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#8A4FAE"/><stop offset=".5" stop-color="#3B528B"/><stop offset="1" stop-color="#20918D"/></linearGradient></defs>
+          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#20918D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="lm"><img src="assets/logo-round-viridis.png" alt="" width="240" height="240">LabMatters</span>
       </div>
 
@@ -249,12 +255,12 @@
           <path d="M60 22v-6" transform="rotate(300 60 60)"/><path d="M60 22v-6" transform="rotate(330 60 60)"/>
         </g>
         <!-- the marked tag -->
-        <path d="M60 24V8" stroke="#5EC962" stroke-width="4" stroke-linecap="round"/>
-        <path d="M60 4h14l-4 5 4 5H60z" fill="#5EC962"/>
+        <path d="M60 24V8" stroke="#FDE725" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 4h14l-4 5 4 5H60z" fill="#FDE725"/>
         <!-- hands at 11:55 -->
         <path d="M60 60V36" stroke="#fff" stroke-width="5" stroke-linecap="round" transform="rotate(357.5 60 60)"/>
         <path d="M60 60V24" stroke="#fff" stroke-width="3.5" stroke-linecap="round" transform="rotate(330 60 60)"/>
-        <path class="second" d="M60 68V26" stroke="#35B779" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="second" d="M60 68V26" stroke="#86D549" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="60" cy="60" r="4" fill="#fff"/>
       </svg>
       <p><strong>More to reveal soon.</strong>The full platform is almost here.</p>
