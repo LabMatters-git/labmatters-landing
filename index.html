@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LabMatters: one system for your research lab</title>
   <meta name="description" content="One system for your research lab's knowledge and daily operations, built automatically from the SOPs and manuals you already have.">
-  <link rel="icon" href="assets/logo-round-viridis.png">
+  <link rel="icon" href="assets/logo-round-emerald.png">
   <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* Self-hosted Inter Tight (SIL OFL), see assets/fonts/LICENSE-InterTight.txt */
@@ -22,20 +22,21 @@
 
     :root {
       /* Viridis, read as a progress colour bar:
-           yellow #FDE725 = just started  ->  green #86D549 = nearly there  ->  teal #20918D = done.
+           yellow #FDE725 = just started  ->  green #86D549 = nearly there  ->  emerald #3CC199 = done
+           (done uses the brighter emerald of the original button instead of viridis teal; the top colour bar keeps true viridis).
          The purple end (#471060) marks the old way of working (PDF/DOC/XLS files).
-         The Get in touch button is a teal-green gradient (white text stays above 3:1 for large bold type). */
+         The Get in touch button is the original emerald (#0F7B5F). */
       --v-purple: #471060; --v-purple-2: #5C1E7C; --v-indigo: #3B528B;
-      --v-teal: #20918D; --v-green: #86D549; --v-yellow: #FDE725;
+      --v-teal: #3CC199; --emerald: #0F7B5F; --emerald-hover: #12916F; --v-green: #86D549; --v-yellow: #FDE725;
       --viridis: linear-gradient(90deg, #471060, #3B528B, #20918D, #35B779, #86D549, #FDE725);
       --mint: var(--v-teal);      /* ready */
       --amber: var(--v-green);    /* nearly there */
       --sky: var(--v-yellow);     /* in progress */
       --sky-text: var(--v-yellow);
-      --ground: #0D0618;
+      --ground: #071326;
       --ink: #FFFFFF;
-      --ink-2: #D2CBE0;
-      --ink-3: #9B91B0;
+      --ink-2: #C3CFDF;
+      --ink-3: #8A9BB3;
       --font: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
@@ -56,8 +57,8 @@
     .backdrop::after {
       content: ""; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(13, 6, 24, .2) 0%, rgba(13, 6, 24, .55) 60%, rgba(13, 6, 24, .9) 100%),
-        linear-gradient(to bottom, rgba(13, 6, 24, .75) 0%, rgba(13, 6, 24, 0) 20%, rgba(13, 6, 24, 0) 72%, rgba(13, 6, 24, .9) 100%);
+        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(7, 19, 38, .2) 0%, rgba(7, 19, 38, .55) 60%, rgba(7, 19, 38, .9) 100%),
+        linear-gradient(to bottom, rgba(7, 19, 38, .75) 0%, rgba(7, 19, 38, 0) 20%, rgba(7, 19, 38, 0) 72%, rgba(7, 19, 38, .9) 100%);
     }
 
     /* One-screen layout */
@@ -73,7 +74,7 @@
     .panel {
       width: min(100%, 940px); text-align: center;
       padding: clamp(28px, 5vh, 52px) clamp(20px, 5vw, 64px);
-      background: rgba(20, 10, 40, .62); border: 1px solid rgba(255, 255, 255, .1); border-radius: 24px;
+      background: rgba(10, 26, 49, .62); border: 1px solid rgba(255, 255, 255, .1); border-radius: 24px;
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7);
       position: relative; overflow: hidden;
@@ -84,7 +85,7 @@
       margin: 0 auto; max-width: 23ch; color: var(--ink);
       font-size: clamp(1.9rem, 3.9vw, 3.15rem); font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
     }
-    .kw { background: linear-gradient(90deg, #20918D, #2FB37E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .kw { background: linear-gradient(90deg, #1FB386, #6FD3B0); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .kw-ops { background-image: linear-gradient(90deg, var(--v-green), var(--v-yellow)); }
     .sub { margin: clamp(14px, 2vh, 20px) auto 0; max-width: 46ch; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--ink-2); }
 
@@ -113,7 +114,7 @@
     .ring circle { fill: none; stroke-width: 3.5; }
     .ring .bg { stroke: rgba(255, 255, 255, .12); }
     .ring .fg { stroke: currentColor; stroke-linecap: round; stroke-dasharray: 182.2; }  /* 2πr, r = 29 */
-    .ring .tick { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint); color: #fff; display: grid; place-items: center; }
+    .ring .tick { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint); color: var(--ground); display: grid; place-items: center; }
     .ring .tick .icon { width: 14px; height: 14px; stroke-width: 3; }
     .status .name { color: var(--ink); font-weight: 650; font-size: .95rem; line-height: 1.2; text-align: center; max-width: 13ch; min-height: 2.4em; display: flex; align-items: center; }
     .status .state { font-size: .8rem; font-weight: 600; letter-spacing: .02em; }
@@ -126,10 +127,10 @@
     .cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       width: min(100%, 560px); margin: clamp(26px, 4.5vh, 44px) auto 0; padding: 20px 28px; border-radius: 14px;
-      background: linear-gradient(135deg, #1F8A87, #279A79); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
-      transition: filter .2s, transform .2s; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 16px 40px -14px rgba(32, 145, 141, .75);
+      background: var(--emerald); color: #fff; text-decoration: none; font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700;
+      transition: background .2s, transform .2s; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 16px 40px -14px rgba(15, 123, 95, .8);
     }
-    .cta:hover { filter: brightness(1.18); transform: translateY(-1px); }
+    .cta:hover { background: var(--emerald-hover); transform: translateY(-1px); }
     .cta:focus-visible { outline: 3px solid var(--v-yellow); outline-offset: 4px; }
     .cta .icon { width: 22px; height: 22px; }
     .addr { margin-top: 12px; font-size: .9rem; color: var(--ink-3); }
@@ -186,12 +187,12 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></symbol>
 </svg>
 
-<!-- Concept background: swap assets/drawings/backdrop-viridis.svg for a real screenshot; the CSS blurs it -->
-<div class="backdrop" aria-hidden="true"><img src="assets/drawings/backdrop-viridis.svg" alt=""></div>
+<!-- Concept background: swap assets/drawings/backdrop.svg for a real screenshot; the CSS blurs it -->
+<div class="backdrop" aria-hidden="true"><img src="assets/drawings/backdrop.svg" alt=""></div>
 
 <div class="page">
   <header>
-    <img src="assets/logo-wordmark-viridis.png" alt="LabMatters" width="900" height="124">
+    <img src="assets/logo-wordmark-emerald.png" alt="LabMatters" width="900" height="124">
   </header>
 
   <main>
@@ -200,9 +201,9 @@
       <p class="sub">Built automatically from the documents you already have.</p>
       <div class="flow" role="img" aria-label="Your PDF, Word and Excel files, moved into LabMatters">
         <span class="file">PDF</span><span class="file">DOC</span><span class="file">XLS</span>
-        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#8A4FAE"/><stop offset=".5" stop-color="#3B528B"/><stop offset="1" stop-color="#20918D"/></linearGradient></defs>
-          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#20918D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="lm"><img src="assets/logo-round-viridis.png" alt="" width="240" height="240">LabMatters</span>
+        <svg class="flow-arrow" viewBox="0 0 72 16" aria-hidden="true"><defs><linearGradient id="fa" gradientUnits="userSpaceOnUse" x1="2" y1="8" x2="62" y2="8"><stop offset="0" stop-color="#8A4FAE"/><stop offset=".5" stop-color="#3B528B"/><stop offset="1" stop-color="#3CC199"/></linearGradient></defs>
+          <path d="M2 8h60" stroke="url(#fa)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 6"/><path d="M60 2l8 6-8 6" fill="none" stroke="#3CC199" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lm"><img src="assets/logo-round-emerald.png" alt="" width="240" height="240">LabMatters</span>
       </div>
 
       <ul class="status" aria-label="Platform status">
@@ -255,8 +256,8 @@
           <path d="M60 22v-6" transform="rotate(300 60 60)"/><path d="M60 22v-6" transform="rotate(330 60 60)"/>
         </g>
         <!-- the marked tag -->
-        <path d="M60 24V8" stroke="#FDE725" stroke-width="4" stroke-linecap="round"/>
-        <path d="M60 4h14l-4 5 4 5H60z" fill="#FDE725"/>
+        <path d="M60 24V8" stroke="#3CC199" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 4h14l-4 5 4 5H60z" fill="#3CC199"/>
         <!-- hands at 11:55 -->
         <path d="M60 60V36" stroke="#fff" stroke-width="5" stroke-linecap="round" transform="rotate(357.5 60 60)"/>
         <path d="M60 60V24" stroke="#fff" stroke-width="3.5" stroke-linecap="round" transform="rotate(330 60 60)"/>
