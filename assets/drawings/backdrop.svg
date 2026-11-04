@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Concept of the lab platform, meant to be shown heavily blurred. Swap for a blurred real screenshot later. -->
+  <rect width="1600" height="1000" fill="#0A1A31"/>
+  <!-- app shell -->
+  <rect x="60" y="60" width="1480" height="880" rx="28" fill="#10284A"/>
+  <rect x="60" y="60" width="260" height="880" rx="28" fill="#0D2240"/>
+  <g fill="#2B4A75"><rect x="100" y="130" width="160" height="22" rx="11"/><rect x="100" y="190" width="130" height="16" rx="8"/><rect x="100" y="230" width="150" height="16" rx="8"/><rect x="100" y="270" width="110" height="16" rx="8"/><rect x="100" y="310" width="140" height="16" rx="8"/></g>
+  <rect x="90" y="182" width="190" height="32" rx="10" fill="#1E7F63"/>
+  <!-- search -->
+  <rect x="370" y="100" width="760" height="64" rx="32" fill="#183660"/>
+  <rect x="420" y="124" width="300" height="16" rx="8" fill="#3A5D8C"/>
+  <!-- knowledge article -->
+  <rect x="370" y="210" width="520" height="460" rx="22" fill="#163259"/>
+  <rect x="410" y="250" width="280" height="26" rx="13" fill="#E9EEF5" opacity=".75"/>
+  <g fill="#2E8F72"><rect x="410" y="296" width="90" height="26" rx="13"/><rect x="512" y="296" width="120" height="26" rx="13"/></g>
+  <g fill="#3A5D8C"><rect x="410" y="350" width="440" height="14" rx="7"/><rect x="410" y="380" width="400" height="14" rx="7"/><rect x="410" y="410" width="420" height="14" rx="7"/></g>
+  <g fill="#3CC199"><circle cx="422" cy="470" r="12"/><circle cx="422" cy="520" r="12"/></g><circle cx="422" cy="570" r="12" fill="#3A5D8C"/>
+  <g fill="#3A5D8C"><rect x="450" y="463" width="340" height="14" rx="7"/><rect x="450" y="513" width="300" height="14" rx="7"/><rect x="450" y="563" width="360" height="14" rx="7"/></g>
+  <!-- equipment calendar -->
+  <rect x="930" y="210" width="560" height="300" rx="22" fill="#163259"/>
+  <rect x="970" y="245" width="200" height="22" rx="11" fill="#E9EEF5" opacity=".6"/>
+  <g fill="#22416D">
+    <rect x="970" y="295" width="110" height="44" rx="8"/><rect x="1094" y="295" width="110" height="44" rx="8"/><rect x="1218" y="295" width="110" height="44" rx="8"/><rect x="1342" y="295" width="110" height="44" rx="8"/>
+    <rect x="970" y="353" width="110" height="44" rx="8"/><rect x="1342" y="353" width="110" height="44" rx="8"/>
+    <rect x="970" y="411" width="110" height="44" rx="8"/><rect x="1094" y="411" width="110" height="44" rx="8"/><rect x="1218" y="411" width="110" height="44" rx="8"/>
+  </g>
+  <rect x="1094" y="353" width="234" height="44" rx="8" fill="#2BA57F"/>
+  <rect x="1342" y="411" width="110" height="44" rx="8" fill="#C9862B"/>
+  <!-- inventory bars -->
+  <rect x="930" y="540" width="270" height="360" rx="22" fill="#163259"/>
+  <rect x="965" y="575" width="140" height="20" rx="10" fill="#E9EEF5" opacity=".6"/>
+  <g fill="#22416D"><rect x="965" y="625" width="200" height="16" rx="8"/><rect x="965" y="685" width="200" height="16" rx="8"/><rect x="965" y="745" width="200" height="16" rx="8"/><rect x="965" y="805" width="200" height="16" rx="8"/></g>
+  <rect x="965" y="625" width="160" height="16" rx="8" fill="#3CC199"/><rect x="965" y="685" width="50" height="16" rx="8" fill="#D9653B"/>
+  <rect x="965" y="745" width="120" height="16" rx="8" fill="#3CC199"/><rect x="965" y="805" width="180" height="16" rx="8" fill="#3CC199"/>
+  <!-- training records -->
+  <rect x="1230" y="540" width="260" height="360" rx="22" fill="#163259"/>
+  <rect x="1265" y="575" width="150" height="20" rx="10" fill="#E9EEF5" opacity=".6"/>
+  <g fill="#22416D"><circle cx="1290" cy="650" r="22"/><circle cx="1290" cy="730" r="22"/><circle cx="1290" cy="810" r="22"/></g>
+  <g fill="#3A5D8C"><rect x="1328" y="640" width="120" height="14" rx="7"/><rect x="1328" y="720" width="100" height="14" rx="7"/><rect x="1328" y="800" width="130" height="14" rx="7"/></g>
+  <g fill="#3CC199"><rect x="1328" y="662" width="80" height="8" rx="4"/><rect x="1328" y="742" width="50" height="8" rx="4"/></g>
+  <!-- assistant bubble -->
+  <rect x="370" y="700" width="520" height="200" rx="22" fill="#174A47"/>
+  <circle cx="420" cy="750" r="20" fill="#3CC199"/>
+  <g fill="#7FD9BB" opacity=".7"><rect x="460" y="740" width="360" height="14" rx="7"/><rect x="420" y="790" width="420" height="14" rx="7"/><rect x="420" y="820" width="380" height="14" rx="7"/></g>
+  <rect x="420" y="852" width="140" height="26" rx="13" fill="#2BA57F"/>
+</svg>
